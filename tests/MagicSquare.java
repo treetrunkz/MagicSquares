@@ -10,12 +10,17 @@ public class MagicSquare {
     choices will store what the number the player chose.
     */
 
+    /**
+     *
+     */
     public void MagicSquare() {
 
         //constructor that initializes choices to zero
 
         short empty = 0b0_0000_0000;
         choices = empty;
+        chosen[] = choices.split("");
+        
 
         while (hasAlreadyChosen((byte) choices) == false) {
             Scanner game = new Scanner(System.in);
@@ -117,6 +122,7 @@ public class MagicSquare {
         //prints the board for the particular player, it doesnt return 0s and 1s
         // use a datastructure to hold the values to print it out, like 1d or 2d array;
         //plus has already chosen method
+
     int[][] board = new int[3][3];
 
     for(int i = 0; i < 3; i++) {

@@ -1,4 +1,7 @@
-+import static org.junit.Assert.*;
+package MagicSquares;
+
+
+import static org.junit.Assert.*;
 import org.junit.*;
 import java.io.ByteArrayOutputStream; // needed to redirect Standard Out
 import java.io.PrintStream; // needed to redirect Standard Out
