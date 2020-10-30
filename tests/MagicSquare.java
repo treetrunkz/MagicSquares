@@ -2,6 +2,9 @@ import java.util.Scanner;
 
 public class MagicSquare {
 
+    /**
+     *
+     */
     private short choices;
 
     /*
@@ -17,10 +20,10 @@ public class MagicSquare {
 
         //constructor that initializes choices to zero
 
-        short empty = 0b0_0000_0000;
+        short empty = 0b000000000;
         choices = empty;
-        chosen[] = choices.split("");
-        
+
+        System.out.println(choices);
 
         while (hasAlreadyChosen((byte) choices) == false) {
             Scanner game = new Scanner(System.in);
@@ -50,24 +53,30 @@ public class MagicSquare {
         // bit at the index selection - 1 to "on." Tis method then returns
         // true if the bit was changed, false if the selection has already been chosen,
         // and throws an IllegalArgumentException if selection is less than 1 or greater than 9.
-        while (selection < 9 | selection > 0) {
+        if (selection > 9 | selection < 0) {
             throw new IllegalArgumentException("This number is not a valid input");
         }
 
-        result = createMask(selection);
+        short result = createMask(selection);
+        short res2 = (short) (result | choices);
+        System.out.println((short)result);
+        String res = Integer.toBinaryString(result);
+        result = Integer.toBinaryString(result & choices);
 
-        if(result & choices != 0){return false;}
+        if(result != 0){return false;}
 
         short mask = createMask(selection);
-        (short) (array & mask) == mask;
+
+        result = (short) (result & mask);
         choices = (short)(choices | result);
+
         return true;
     }
 
 
     private short createMask(byte selection){
 
-        short mask = 1;
+        short mask = 0b0000001;
         return (short)(mask << selection);
 
     }
@@ -83,11 +92,12 @@ public class MagicSquare {
         short y = createMask(selection);
         //use bitmask to only turn this one to on, then do selection compare
         // try a do while loop
-        do {
-            System.out.println("What is your choice?");
-            if ((x & y) != 0) {
+
+        System.out.println("What is your choice?");
+
+        if ((x & y) != 0) {
                 return false;
-            }
+        }
             return true;
 
             //Returns true if the bit at index selection - 1 is set to the "on" position,
@@ -98,38 +108,49 @@ public class MagicSquare {
             //bit at index selection - 1.
 
 
-        }
+
     }
     public short getChoices() {
-
-            int[] wins = new int[]{66, 98, 170, 370, 371, 379, 383, 511};
-            for (int i : wins) {
-                if (choices == (short) wins[i]) {
-                    return isWon();
-                }
+        this.choices = choices;
+//            int[] wins = new int[]{66, 98, 170, 370, 371, 379, 383, 511};
+//            for (int i : wins) {
+//                if (choices == (short) wins[i]) {
+//                    return isWon();
+//                }
                 ;
                 //Getter for the choices field. This number can then be examined to determine
                 // if the player has won the match or not
 
-                short mask = 1;
-                //mask = (short)(mask << choices);
-                choices = (short) (array & mask);
-                mask = (short) (mask << choices);
+//                short mask = 1;
+//                //mask = (short)(mask << choices);
+//                choices = (short) (array & mask);
+//                mask = (short) (mask << choices);
 
-            }
+            return choices;
         }
     public void printChoices() {
         //prints the board for the particular player, it doesnt return 0s and 1s
         // use a datastructure to hold the values to print it out, like 1d or 2d array;
         //plus has already chosen method
+        System.out.println(choices);
+        String s = String.valueOf(choices);
+        long count = s.chars()
+            .mapToObj(i -> (char)i)
+            .filter(ch -> ch.equals('1'))
+            .count();
+        System.out.println(count);
 
-    int[][] board = new int[3][3];
+        int[] intArray = new int[]{ 2,7,6,9,5,1,4,3,8 };
+        int[] exArray = new int[]{ 0,0,0,0,0,0,0,0,0 };
 
-    for(int i = 0; i < 3; i++) {
-        for(int j = 0; j < 3; j++){
-            board[i][j] = Integer.parseInt("_");
-        }
-    }
+
+//        int[][] board = new int[3][3];
+
+//    for(int i = 0; i < 3; i++) {
+//        for(int j = 0; j < 3; j++){
+//            board[i][j] = Integer.parseInt();
+//        }
+//    }
 
         // this is where the win is located for example A1 + A2 + A3 = 15 ;; 001100010 / 98
         //use AND to show the player selections 101100011 against a victory selection 001100010

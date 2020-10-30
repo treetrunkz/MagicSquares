@@ -1,6 +1,3 @@
-package MagicSquares;
-
-
 import static org.junit.Assert.*;
 import org.junit.*;
 import java.io.ByteArrayOutputStream; // needed to redirect Standard Out

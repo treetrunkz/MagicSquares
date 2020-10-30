@@ -22,8 +22,9 @@ public class MagicSquareGame {
      * @param both - player1 and player 2 choices
      * @return a number indicating the game state(CONTINUE, DRAW, WIN)
      */
-    public static boolean takePlayerTurn() {
+    public static boolean takePlayerTurn(p, both) {
     p.getChoice();
+    p.choose()
     both.getChoice();
     }
 
@@ -32,8 +33,8 @@ public class MagicSquareGame {
      * @param both - player 1 and player 2 choices
      * @return true if all values have been picked, game is a DRAW, false otherwise
      */
-    public static boolean isDraw() {
-
+    public static boolean isDraw(both) {
+        if both.choices = 0b1_1111_1111
     }
 
     /**
@@ -41,13 +42,14 @@ public class MagicSquareGame {
      * @param p the player
      * @return true, if the player has won, false otherwise
      */
-    public static boolean isWin() {
+    public static boolean isWin(p) {
         int[] wins = new int[]{66, 98, 170, 370, 371, 379, 383, 511};
         for (int i : wins) {
             if (p.magicSquare.getChoices == (short) wins[i]) {
-                System.out.println("player "+p+" has won the contest!");
-                }
+                System.out.println("player " + p + " has won the contest!");
             }
+        }
+    }
 
     /**
      * This getSelection method asks the player for their number selection from 1 - 9.  If the user does not enter a number in this
@@ -57,8 +59,11 @@ public class MagicSquareGame {
      * @return the number chosen from 1-9
      *
      */
-    public static void getSelection(){
-
+    public static void getSelection(p){
+        Scanner number = new Scanner(System.in);
+        System.out.println("player "+getName(p)+ " please choose a number from 1-9");
+        int num = number.nextInt();
+        return num;
     }
 
     /**
@@ -66,13 +71,11 @@ public class MagicSquareGame {
      * @param playerNum the player's number
      * @return the player's name
      */
-    public static void getName() {
-        Scanner name = new Scanner(System.in);
-        System.out.println("Player, what is your name?");
-        String username1 = name.nextLine();
-        Scanner name2 = new Scanner(System.in);
-        String username2 = name2.nextLine();
-        System.out.println("Player two, what is your name?");
+    public static void getName(playerNum) {
+        Scanner playerNum = new Scanner(System.in);
+        System.out.println("Enter a name for player "+playerNum);
+        String name = playerNum.nextLine();
+        return name;
     }
 
     /**
